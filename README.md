@@ -1,77 +1,42 @@
-# hexagonal-arquitecture
+# Proyecto de Ejemplo con Quarkus y Arquitectura Hexagonal
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Este es un proyecto de ejemplo que demuestra la implementación de la arquitectura hexagonal (puertos y adaptadores) utilizando Quarkus y Java. La arquitectura hexagonal busca separar las preocupaciones, permitiendo que el núcleo de la aplicación (dominio) permanezca independiente de la infraestructura y las interfaces externas.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+## ¿Qué es la Arquitectura Hexagonal?
 
-## Running the application in dev mode
+La arquitectura hexagonal, también conocida como Ports and Adapters, organiza la aplicación en un núcleo central que contiene la lógica de negocio (dominio). Este núcleo se conecta a través de "puertos" que definen las interfaces para interactuar con el exterior, como bases de datos, APIs, UI, etc. Los "adaptadores" implementan esos puertos, permitiendo la comunicación con diferentes tecnologías o interfaces sin afectar el dominio.
 
-You can run your application in dev mode that enables live coding using:
+![Diagrama de Arquitectura Hexagonal](./images/arq-hex.png)
 
-```shell script
+## Estructura del Proyecto
+
+- `src/main/java/com/resolutions/adapters`: Código fuente adaptadores: In (Controladores), out (Bridges y Repositorios).
+- `src/main/java/com/resolutions/applications`: Código fuente del núcleo: Casos de usuos y puertos.
+- `src/main/java/com/resolutions/modelo`: Código fuente del núcleo: Entidades.
+- `src/main/resources/`: Configuración.
+- `test/`: Pruebas unitarias y de integración.
+
+## Características principales
+
+- Implementación en Quarkus para un arranque rápido y eficiente.
+- Separación clara entre lógica de negocio y adaptadores tecnológicos.
+- Fácil de extender con nuevos adaptadores o puertos.
+
+## Cómo ejecutar
+
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/ronaldsanchez/hexagonal-arquitecture.git
+```
+2. Correr una imagen de oracle. Ejecute los comandos de Podman ubicados en el archivo: `podman/Oracle24ai_FREE.txt`
+<br>   
+
+3. Correr el aplicativo:
+```bash
 ./mvnw quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
-
-## Packaging and running the application
-
-The application can be packaged using:
-
-```shell script
-./mvnw package
+4. Tester el aplicativo:
+```bash
+curl -d '{"catDesc":"Menu Principal","codUsr":"rsanchez"}' -H "Content-Type: application/json" POST http://localhost:8080/api/catalogos -w "\n" -v
 ```
-
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/hexagonal-arquitecture-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- REST JSON-B ([guide](https://quarkus.io/guides/rest#json-serialisation)): JSON-B serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
-
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)

@@ -6,7 +6,9 @@ Este es un proyecto de ejemplo que demuestra la implementación de la arquitectu
 
 La arquitectura hexagonal, también conocida como Ports and Adapters, organiza la aplicación en un núcleo central que contiene la lógica de negocio (dominio). Este núcleo se conecta a través de "puertos" que definen las interfaces para interactuar con el exterior, como bases de datos, APIs, UI, etc. Los "adaptadores" implementan esos puertos, permitiendo la comunicación con diferentes tecnologías o interfaces sin afectar el dominio.
 
-![Diagrama de Arquitectura Hexagonal](./images/arq-hex.png)
+
+![Diagrama de Arquitectura Hexagonal](./images/arq-hex.png){style="display: block; margin: 0 auto" }
+
 
 ## Estructura del Proyecto
 
@@ -29,7 +31,6 @@ La arquitectura hexagonal, también conocida como Ports and Adapters, organiza l
 git clone https://github.com/ronaldsanchez/hexagonal-arquitecture.git
 ```
 2. Correr una imagen de oracle. Ejecute los comandos de Podman ubicados en el archivo: `podman/Oracle24ai_FREE.txt`
-<br>   
 
 3. Correr el aplicativo:
 ```bash

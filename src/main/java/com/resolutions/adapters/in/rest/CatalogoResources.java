@@ -2,7 +2,6 @@ package com.resolutions.adapters.in.rest;
 
 import com.resolutions.application.ports.in.AddCatalogoUseCase;
 import com.resolutions.model.Catalogo;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Context;

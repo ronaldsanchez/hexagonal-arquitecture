@@ -1,6 +1,5 @@
 package com.resolutions.adapters;
 
-import com.resolutions.adapters.out.jpa.GencatsencaRepositoryImp;
 import com.resolutions.application.ports.out.LoggerLocal;
 import com.resolutions.model.Catalogo;
 import com.resolutions.application.ports.in.AddCatalogoUseCase;

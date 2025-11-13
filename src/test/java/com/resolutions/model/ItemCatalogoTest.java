@@ -11,7 +11,7 @@ public class ItemCatalogoTest {
         ItemCatalogo item = new ItemCatalogo(5, "desc");
 
         assertEquals(5, item.codCor());
-        assertEquals("desc", item.cirDesc());
+        assertEquals("desc", item.corDesc());
     }
 }
 

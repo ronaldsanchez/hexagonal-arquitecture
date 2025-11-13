@@ -22,4 +22,5 @@ public class GencatsdetaPK {
     public void setCodCor(Integer codCor) {
         this.codCor = codCor;
     }
+    
 }

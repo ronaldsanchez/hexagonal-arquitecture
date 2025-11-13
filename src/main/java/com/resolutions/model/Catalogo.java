@@ -1,12 +1,14 @@
 package com.resolutions.model;
 
 import java.time.Instant;
+import java.util.List;
 
 public class Catalogo {
     private Integer codCat;
     private String catDesc;
     private String codUsr;
     private Instant fecha;
+    private List<ItemCatalogo> items;
 
     public Integer getCodCat() {
         return codCat;
@@ -38,5 +40,13 @@ public class Catalogo {
 
     public void setFecha(Instant fecha) {
         this.fecha = fecha;
+    }
+
+    public List<ItemCatalogo> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemCatalogo> items) {
+        this.items = items;
     }
 }

@@ -7,24 +7,24 @@ import com.resolutions.application.ports.out.DataPersist;
 
 import java.time.Instant;
 
+import com.resolutions.application.services.CatalogoValidator;
+
 public class AddCatalogo implements AddCatalogoUseCase {
 
     private final DataPersist<Catalogo> dataRepository;
     private final LoggerLocal log;
+    private final CatalogoValidator validator;
 
-    public AddCatalogo(DataPersist<Catalogo> dataRepository, LoggerLocal log) {
+    public AddCatalogo(DataPersist<Catalogo> dataRepository, LoggerLocal log, CatalogoValidator validator) {
         this.dataRepository = dataRepository;
         this.log = log;
+        this.validator = validator;
     }
 
     public Integer run(Catalogo catalogo) throws Exception {
-        validarDatos(catalogo);
+        validator.validateDescription(catalogo);
         crearRegistro(catalogo);
         return dataRepository.insert(catalogo);
-    }
-
-    private void validarDatos(Catalogo catalogo) {
-
     }
 
     private void crearRegistro(Catalogo catalogo){

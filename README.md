@@ -41,3 +41,125 @@ git clone https://github.com/ronaldsanchez/hexagonal-arquitecture.git
 ```bash
 curl -d '{"catDesc":"Menu Principal","codUsr":"rsanchez"}' -H "Content-Type: application/json" POST http://localhost:8080/api/catalogos -w "\n" -v
 ```
+
+## Endpoints de la API
+
+### Catálogos
+
+#### POST /api/catalogos
+Crear un nuevo catálogo.
+
+**Request:**
+```json
+{
+  "catDesc": "Descripción del catálogo",
+  "codUsr": "usuario",
+  "items": []
+}
+```
+
+**Response:** 
+- Status: 201 Created
+- Location: URI del catálogo creado
+
+---
+
+#### GET /api/catalogos/{id}
+Obtener un catálogo por ID.
+
+**Parameters:**
+- `id` (path): ID del catálogo
+
+**Response (200):**
+```json
+{
+  "codCat": 1,
+  "catDesc": "Descripción",
+  "codUsr": "usuario",
+  "fecha": "2025-11-12T10:00:00Z",
+  "items": []
+}
+```
+
+---
+
+#### GET /api/catalogos?descripcion={descripcion}
+Buscar un catálogo por descripción.
+
+**Parameters:**
+- `descripcion` (query): Descripción del catálogo a buscar
+
+**Response (200):**
+```json
+{
+  "codCat": 1,
+  "catDesc": "Descripción",
+  "codUsr": "usuario",
+  "fecha": "2025-11-12T10:00:00Z",
+  "items": []
+}
+```
+
+---
+
+#### GET /api/catalogos/paginated/list?page={page}&size={size}
+Obtener catálogos paginados.
+
+**Parameters:**
+- `page` (query, optional): Número de página (default: 0)
+- `size` (query, optional): Cantidad de items por página (default: 10)
+
+**Response (200):**
+```json
+{
+  "content": [
+    {
+      "codCat": 1,
+      "catDesc": "Descripción 1",
+      "codUsr": "usuario",
+      "fecha": "2025-11-12T10:00:00Z",
+      "items": []
+    },
+    {
+      "codCat": 2,
+      "catDesc": "Descripción 2",
+      "codUsr": "usuario",
+      "fecha": "2025-11-12T11:00:00Z",
+      "items": []
+    }
+  ],
+  "page": 0,
+  "size": 10,
+  "totalElements": 25,
+  "totalPages": 3
+}
+```
+
+**Ejemplos:**
+```bash
+# Obtener página 0 con 10 items (default)
+curl http://localhost:8080/api/catalogos/paginated/list
+
+# Obtener página 1 con 15 items por página
+curl http://localhost:8080/api/catalogos/paginated/list?page=1&size=15
+```
+
+---
+
+#### PUT /api/catalogos/{id}
+Modificar un catálogo existente.
+
+**Parameters:**
+- `id` (path): ID del catálogo
+
+**Request:**
+```json
+{
+  "catDesc": "Nueva descripción",
+  "codUsr": "usuario",
+  "items": []
+}
+```
+
+**Response:** 
+- Status: 204 No Content

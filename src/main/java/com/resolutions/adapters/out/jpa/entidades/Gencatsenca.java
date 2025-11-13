@@ -15,6 +15,9 @@ public class Gencatsenca {
     private Instant fechCrea;
     private Instant fechMod;
 
+    @OneToMany(mappedBy = "gencatsenca", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<Gencatsdeta> items;
+
     public Integer getCodCat() {
         return codCat;
     }
@@ -54,6 +57,14 @@ public class Gencatsenca {
 
     public void setFechMod(Instant fechMod) {
         this.fechMod = fechMod;
+    }
+
+    public java.util.List<Gencatsdeta> getItems() {
+        return items;
+    }
+
+    public void setItems(java.util.List<Gencatsdeta> items) {
+        this.items = items;
     }
 
     @Override
